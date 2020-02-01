@@ -113,9 +113,9 @@ void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 
 void square_dgemm (int lda, double* A, double* B, double* C)
 {
-	for(int iStart = 0, iEnd = LEVEL_3_BLOCK; iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
-		for(int jStart = 0, jEnd = LEVEL_3_BLOCK; jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
-			for(int kStart = 0, kEnd = LEVEL_3_BLOCK; kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
+	for(int iStart = 0, iEnd = min(LEVEL_3_BLOCK, lda); iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
+		for(int jStart = 0, jEnd = min(LEVEL_3_BLOCK, lda); jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
+			for(int kStart = 0, kEnd = min(LEVEL_3_BLOCK, lda); kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
 				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 
 }
