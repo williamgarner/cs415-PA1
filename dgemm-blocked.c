@@ -26,20 +26,20 @@ const char* dgemm_desc = "Simple blocked dgemm.";
 /* This auxiliary subroutine performs a smaller dgemm operation
  *  C := C + A * B
  * where C is M-by-N, A is M-by-K, and B is K-by-N. */
-//static void do_block (int lda, int M, int N, int K, double* A, double* B, double* C)
-//{
-//  /* For each row i of A */
-//  for (int i = 0; i < M; ++i)
-//    /* For each column j of B */
-//    for (int j = 0; j < N; ++j)
-//    {
-//      /* Compute C(i,j) */
-//      double cij = C[i+j*lda];
-//      for (int k = 0; k < K; ++k)
-//	cij += A[i+k*lda] * B[k+j*lda];
-//      C[i+j*lda] = cij;
-//    }
-//}
+static void do_block (int lda, int M, int N, int K, double* A, double* B, double* C)
+{
+  /* For each row i of A */
+  for (int i = 0; i < M; ++i)
+    /* For each column j of B */
+    for (int j = 0; j < N; ++j)
+    {
+      /* Compute C(i,j) */
+      double cij = C[i+j*lda];
+      for (int k = 0; k < K; ++k)
+	cij += A[i+k*lda] * B[k+j*lda];
+      C[i+j*lda] = cij;
+    }
+}
 
 /* This routine performs a dgemm operation
  *  C := C + A * B
@@ -83,7 +83,8 @@ void doBlock(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double*
 //				printf("k + j * jMax: %d\n", k + j * jMax);
 
 
-				C[i + j * jMax] += A[i + k * kMax] * B[k + j * jMax];
+//				C[i + j * jMax] += A[i + k * kMax] * B[k + j * jMax];
+
 			}
 }
 
@@ -91,22 +92,23 @@ void doBlock(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double*
 
 #define LEVEL_1_BLOCK 60/sizeof(double)
 
-void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C)
+void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C, int lda)
 {
 	for(int iStart = iMin, iEnd = iMax; iStart < iMax; iStart = iEnd, iEnd = min(iEnd + LEVEL_1_BLOCK, iMax))
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_1_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_1_BLOCK, kMax))
-				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
+//				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
+				do_block(lda, iMax, jMax, kMax, A, B, C)
 }
 
 #define LEVEL_2_BLOCK 170/sizeof(double)
 
-void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C)
+void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C, int lda)
 {
 	for(int iStart = iMin, iEnd = iMax; iStart < iMax; iStart = iEnd, iEnd = min(iEnd + LEVEL_2_BLOCK, iMax))
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_2_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_2_BLOCK, kMax))
-				level1Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
+				level1Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
 }
 
 #define LEVEL_3_BLOCK 2019/sizeof(double)
@@ -116,7 +118,7 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 	for(int iStart = 0, iEnd = min(LEVEL_3_BLOCK, lda); iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
 		for(int jStart = 0, jEnd = min(LEVEL_3_BLOCK, lda); jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
 			for(int kStart = 0, kEnd = min(LEVEL_3_BLOCK, lda); kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
-				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
+				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
 
 //	for(int i = 0; i < lda * lda; i++)
 //		for(int j = 0; j < lda; ++j)
