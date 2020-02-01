@@ -15,6 +15,8 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 const char* dgemm_desc = "Simple blocked dgemm.";
 
+#include <stdio.h>
+
 #if !defined(BLOCK_SIZE)
 #define BLOCK_SIZE 41
 #endif
@@ -65,10 +67,24 @@ const char* dgemm_desc = "Simple blocked dgemm.";
 
 void doBlock(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C)
 {
+	printf("iMax: %d", iMax);
+	printf("jMax: %d", jMax);
+	printf("kMax: %d", kMax);
 	for(int i = iMin; i < iMax; i++)
 		for(int j = jMin; j < jMax; j++)
 			for(int k = kMin; k < kMax; k++)
-				C[i + j*jMax] += A[i + k *kMax] * B[k + j*jMax];
+			{
+				printf("C:\n");
+				printf("\ti: %d\n", i);
+				printf("\tj: %d\n", j);
+				printf("\tk: %d\n", k);
+				printf("i + j * jMax: %d\n", i + j * jMax);
+				printf("i + k * kMax: %d\n", i + k * kMax);
+				printf("k + j * jMax: %d\n", k + j * jMax);
+
+
+				C[i + j * jMax] += A[i + k * kMax] * B[k + j * jMax];
+			}
 }
 
 
