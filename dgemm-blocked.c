@@ -115,9 +115,15 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 {
 	for(int iStart = 0, iEnd = min(LEVEL_3_BLOCK, lda); iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
 		for(int jStart = 0, jEnd = min(LEVEL_3_BLOCK, lda); jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
+		{
+			double cij = C[iStart+jStart*lda];
 			for(int kStart = 0, kEnd = min(LEVEL_3_BLOCK, lda); kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
+			{
 //				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
-				1+1;
+				cij += A[iStart+kStart*lda] * B[kStart+jStart*lda];
+				C[iStart+jStart*lda] = cij;
+			}
+		}
 
 
 }
