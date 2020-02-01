@@ -119,7 +119,9 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 //				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 
 	for(int i = 0; i < lda * lda; i++)
-		C[i] = -1;
+		for(int j = 0; j < lda; ++j)
+			for(int k = 0; k < lda; ++k)
+				C[i] = -1 * A[j] * B[k] > 0 ? A[j] * B[k] : -1 * A[j] * B[k];
 
 }
 
