@@ -142,11 +142,11 @@
 const char* dgemm_desc = "our optimized dgemm";
 
 #if !defined(BLOCK_L1)
-#define BLOCK_L1 256
+#define BLOCK_L1 10
 #endif
 
 #if !defined(BLOCK_L2)
-#define BLOCK_L2 512
+#define BLOCK_L2 21
 #endif
 
 #define A(i,j) A[(j)*lda + (i)]
