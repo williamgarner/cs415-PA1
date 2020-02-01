@@ -98,7 +98,7 @@ void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_1_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_1_BLOCK, kMax))
 //				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
-				do_block(lda, iMax, jMax, kMax, A, B, C)
+				do_block(lda, iMax, jMax, kMax, A, B, C);
 }
 
 #define LEVEL_2_BLOCK 170/sizeof(double)
