@@ -158,6 +158,7 @@ int main (int argc, char **argv)
       	printf("C[i]: %d", C[i]);
       	printf("i: %d", i);
       	printf("\n");
+	  fflush(stdout);
 	  die("*** FAILURE *** Error in matrix multiply exceeds componentwise error bounds.\n" );
 	  }
 
