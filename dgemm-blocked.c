@@ -161,11 +161,12 @@ static void do_4x4 (int lda, int K, double* a, double* b, double* c)
 {
 	sse_reg
 			a0x_1x, a2x_3x,
-			bx0, bx1, bx2, bx3,
+//			bx0, bx1, bx2, bx3,
 			c00_10, c20_30,
 			c01_11, c21_31,
 			c02_12, c22_32,
 			c03_13, c23_33;
+
 
 	double* c01_11_pntr = c + lda;
 	double* c02_12_pntr = c01_11_pntr + lda;
@@ -185,10 +186,10 @@ static void do_4x4 (int lda, int K, double* a, double* b, double* c)
 		a2x_3x = _mm_load_pd(a+2);
 		a += 4;
 
-		bx0 = _mm_loaddup_pd(b++);
-		bx1 = _mm_loaddup_pd(b++);
-		bx2 = _mm_loaddup_pd(b++);
-		bx3 = _mm_loaddup_pd(b++);
+		__m128d bx0 = _mm_loaddup_pd(b++);
+		__m128d bx1 = _mm_loaddup_pd(b++);
+		__m128d bx2 = _mm_loaddup_pd(b++);
+		__m128d bx3 = _mm_loaddup_pd(b++);
 
 		c00_10 = _mm_add_pd(c00_10, _mm_mul_pd(a0x_1x, bx0));
 		c20_30 = _mm_add_pd(c20_30, _mm_mul_pd(a2x_3x, bx0));
