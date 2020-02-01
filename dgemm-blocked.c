@@ -89,7 +89,7 @@ void doBlock(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double*
 
 
 
-#define LEVEL_1_BLOCK 32768/sizeof(double)
+#define LEVEL_1_BLOCK 60/sizeof(double)
 
 void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C)
 {
@@ -99,7 +99,7 @@ void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 }
 
-#define LEVEL_2_BLOCK 262144/sizeof(double)
+#define LEVEL_2_BLOCK 170/sizeof(double)
 
 void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double* A, double* B, double* C)
 {
@@ -109,22 +109,22 @@ void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 				level1Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 }
 
-#define LEVEL_3_BLOCK 36700160/sizeof(double)
+#define LEVEL_3_BLOCK 2019/sizeof(double)
 
 void square_dgemm (int lda, double* A, double* B, double* C)
 {
-//	for(int iStart = 0, iEnd = min(LEVEL_3_BLOCK, lda); iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
-//		for(int jStart = 0, jEnd = min(LEVEL_3_BLOCK, lda); jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
-//			for(int kStart = 0, kEnd = min(LEVEL_3_BLOCK, lda); kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
-//				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
+	for(int iStart = 0, iEnd = min(LEVEL_3_BLOCK, lda); iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
+		for(int jStart = 0, jEnd = min(LEVEL_3_BLOCK, lda); jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
+			for(int kStart = 0, kEnd = min(LEVEL_3_BLOCK, lda); kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
+				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 
-	for(int i = 0; i < lda * lda; i++)
-		for(int j = 0; j < lda; ++j)
-			for(int k = 0; k < lda; ++k)
-			{
-				C[i] = -1;
-//				printf("%lf ", C[i]);
-			}
+//	for(int i = 0; i < lda * lda; i++)
+//		for(int j = 0; j < lda; ++j)
+//			for(int k = 0; k < lda; ++k)
+//			{
+//				C[i] = -1;
+////				printf("%lf ", C[i]);
+//			}
 
 }
 
