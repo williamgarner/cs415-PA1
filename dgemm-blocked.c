@@ -121,7 +121,10 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 	for(int i = 0; i < lda * lda; i++)
 		for(int j = 0; j < lda; ++j)
 			for(int k = 0; k < lda; ++k)
+			{
 				C[i] = -1 * A[j] * B[k] > 0 ? A[j] * B[k] : -1 * A[j] * B[k];
+				printf("%d\n", C[i]);
+			}
 
 }
 
