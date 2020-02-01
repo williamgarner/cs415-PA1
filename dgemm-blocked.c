@@ -122,7 +122,7 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 		for(int j = 0; j < lda; j++)
 			for(int k = 0; k < lda; k++)
 			{
-				C[i+j*lda] = A[i+k*lda] * B[k+j*lda];
+				C[i+j*lda] = -1;
 			}
 
 }
