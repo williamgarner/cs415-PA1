@@ -80,7 +80,7 @@ void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 	for(int iStart = iMin, iEnd = iMax; iStart < iMax; iStart = iEnd, iEnd = min(iEnd + LEVEL_1_BLOCK, iMax))
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_1_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_1_BLOCK, kMax))
-				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C)
+				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 }
 
 #define LEVEL_2_BLOCK 262144/sizeof(double)
@@ -90,7 +90,7 @@ void level2Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 	for(int iStart = iMin, iEnd = iMax; iStart < iMax; iStart = iEnd, iEnd = min(iEnd + LEVEL_2_BLOCK, iMax))
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_2_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_2_BLOCK, kMax))
-				level1Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C)
+				level1Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 }
 
 #define LEVEL_3_BLOCK 36700160/sizeof(double)
@@ -100,7 +100,7 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 	for(int iStart = 0, iEnd = LEVEL_3_BLOCK; iStart < lda; iStart = iEnd, iEnd = min(iEnd + LEVEL_3_BLOCK, lda))
 		for(int jStart = 0, jEnd = LEVEL_3_BLOCK; jStart < lda; jStart = jEnd, jEnd = min(jEnd + LEVEL_3_BLOCK, lda))
 			for(int kStart = 0, kEnd = LEVEL_3_BLOCK; kStart < lda; kStart = kEnd, kEnd = min(kEnd + LEVEL_3_BLOCK, lda))
-				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C)
+				level2Block(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C);
 
 }
 
