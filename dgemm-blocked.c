@@ -83,7 +83,7 @@ void doBlock(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, double*
 //				printf("k + j * jMax: %d\n", k + j * jMax);
 
 
-//				C[i + j * jMax] += A[i + k * kMax] * B[k + j * jMax];
+				C[i + j * jMax] += A[i + k * kMax] * B[k + j * jMax];
 
 			}
 }
@@ -97,8 +97,8 @@ void level1Block(int iMin, int iMax, int jMin, int jMax, int kMin, int kMax, dou
 	for(int iStart = iMin, iEnd = iMax; iStart < iMax; iStart = iEnd, iEnd = min(iEnd + LEVEL_1_BLOCK, iMax))
 		for(int jStart = jMin, jEnd = jMax; jStart < jMax; jStart = jEnd, jEnd = min(jEnd + LEVEL_1_BLOCK, jMax))
 			for(int kStart = kMin, kEnd = kMax; kStart < kMax; kStart = kEnd, kEnd = min(kEnd + LEVEL_1_BLOCK, kMax))
-//				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
-				do_block(lda, iMax, jMax, kMax, A, B, C);
+				doBlock(iStart, iEnd, jStart, jEnd, kStart, kEnd, A, B, C, lda);
+//				do_block(lda, iMax, jMax, kMax, A, B, C);
 }
 
 #define LEVEL_2_BLOCK 170/sizeof(double)
