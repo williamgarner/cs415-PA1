@@ -16,6 +16,8 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 #define __FMA__ 1
 #endif
 
+#define FP_FAST_FMA 1
+
 #include <math.h>
 #include <stdio.h>
 
@@ -27,22 +29,12 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 {
-#define FP_FAST_FMA 1
-#ifdef FP_FAST_FMA
-	printf("YAY!\n");
-#else
-	printf("Nooo\n");
-#endif
+
+
 	for (int j = 0; j < n; ++j)
 		for( int k = 0; k < n; k++ )
 			#pragma vector aligned
 			for (int i = 0; i < n; ++i)
-			{
-				#ifdef FP_FAST_FMA
 				C[i+ j*n] = fma(A[i+ k*n], B[k+ j*n], C[i+ j*n]);
-				#else
-				C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
-				#endif
-			}
 
 }
