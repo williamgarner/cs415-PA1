@@ -27,6 +27,10 @@ void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 		for( int k = 0; k < n; k++ )
 			#pragma vector aligned
 			for (int i = 0; i < n; ++i)
-				C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
+			{
+				register double* cij = &C[i+ j*n];
+				register double aik = A[i+ k*n];
+				*cij += aik * B[k+ j*n];
+			}
 
 }
