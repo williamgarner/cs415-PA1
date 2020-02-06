@@ -12,9 +12,6 @@ MKLROOT = /opt/intel/composer_xe_2013.1.117/mkl
 LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm
 
 */
-#if !defined(__FMA__) && defined(__AVX2__)
-	#define __FMA__ 1
-#endif
 
 #include <math.h>
 
@@ -32,6 +29,6 @@ void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 		for( int k = 0; k < n; k++ )
 			#pragma vector aligned
 			for (int i = 0; i < n; ++i)
-				C[i+ j*n] = A[i+ k*n] * B[k+ j*n] + C[i+ j*n];
+				C[i+ j*n] = fma(A[i+ k*n], B[k+ j*n], C[i+ j*n]);
 
 }
