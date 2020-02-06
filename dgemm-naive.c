@@ -18,6 +18,7 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 #define C(row,col) C[row*n + col]
 #define A(row, col) A[row*n + col]
 #define B(row, bCol) B[row*n + bCol]
+#define likely(x) __builtin_expect(!!(x), 1)
 
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
@@ -28,16 +29,25 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
 void square_dgemm (int n, double* A, double* B, double* C)
 {
 //	memset(C, 0, sizeof(C));
-	for(int row = 0; row < n; ++row)
-	{
-		for(int col = 0; col < n; ++col)
-		{
-			for(int bCol = 0; bCol < n; ++bCol)
-			{
-				C(row, col) += A(row, col) * B(row, bCol);
-			}
-		}
-	}
+//	for(int row = 0; row < n; ++row)
+//	{
+//		for(int col = 0; col < n; ++col)
+//		{
+//			for(int bCol = 0; bCol < n; ++bCol)
+//			{
+//				C(row, col) += A(row, col) * B(row, bCol);
+//			}
+//		}
+//	}
+
+
+	for (int i = 0; i < n; i++)
+		for (int k = 0; k < n; k++)
+			for (int j = 0; j < n; j++)
+				if (likely(k))
+					C[i*n + j] += A[i*n + k] * B[k*n + j];
+				else
+					C[i*n + j] = A[i*n + k] * B[k*n + j];
 
 
   /* For each row i of A */
