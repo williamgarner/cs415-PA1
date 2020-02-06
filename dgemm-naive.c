@@ -13,7 +13,7 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 */
 
-typedef double * __restrict__ __attribute__((align_value (32)))
+typedef double * __restrict__ __attribute__((align_value (32)));
 
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
