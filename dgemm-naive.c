@@ -27,6 +27,7 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 {
+#define FP_FAST_FMA 1
 #ifdef FP_FAST_FMA
 	printf("YAY!\n");
 #else
