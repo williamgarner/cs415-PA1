@@ -12,6 +12,9 @@ MKLROOT = /opt/intel/composer_xe_2013.1.117/mkl
 LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm
 
 */
+#if !defined(__FMA__) && defined(__AVX2__)
+#define __FMA__ 1
+#endif
 
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
