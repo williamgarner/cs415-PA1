@@ -22,6 +22,7 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
 void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 {
 	for (int j = 0; j < n; ++j)
+		#pragma block_loop
 			for( int k = 0; k < n; k++ )
 			#pragma vector aligned
 			#pragma block_loop
