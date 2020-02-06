@@ -155,11 +155,7 @@ int main (int argc, char **argv)
     for (int i = 0; i < n * n; ++i)
       if (C[i] > 0)
 	  {
-//      	printf("C[i]: %lf\n", C[i]);
-//      	printf("i: %d\n", i);
-//      	printf("\n");
-//	  fflush(stdout);
-	  die("*** FAILURE *** Error in matrix multiply exceeds componentwise error bounds.\n" );
+	 	 die("*** FAILURE *** Error in matrix multiply exceeds componentwise error bounds.\n" );
 	  }
 
   }
