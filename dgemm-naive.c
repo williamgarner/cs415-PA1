@@ -34,7 +34,7 @@ void square_dgemm (int n, double* A, double* B, double* C)
 		{
 			for(int bCol = 0; bCol < n; ++bCol)
 			{
-				C(row, col) += A(row, col) *
+				C(row, col) += A(row, col) * B(row, bCol);
 			}
 		}
 	}
