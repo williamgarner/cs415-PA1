@@ -34,7 +34,7 @@ void square_dgemm (int n, double* A, double* B, double* C)
 		{
 			for(int k = 0; k < n; ++k)
 			{
-				C[i * n + j] += A[i * n + k] * B[i*n + j];
+				C[i * n + k] += A[i * n + k] * B[i*n + j];
 			}
 		}
 	}
