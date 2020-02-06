@@ -12,19 +12,17 @@ MKLROOT = /opt/intel/composer_xe_2013.1.117/mkl
 LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm
 
 */
-
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
 /* This routine performs a dgemm operation
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
  * On exit, A and B maintain their input values. */    
-void square_dgemm (int n, double* __restrict__ __attribute__((align_value (32))) A, double* __restrict__ __attribute__((align_value (32)))B, double* __restrict__ __attribute__((align_value (32)))C)
+void square_dgemm (int n, double*  A, double* B, double* C)
 {
 #pragma block_loop factor(256) level(1:2)
 	for (int j = 0; j < n; ++j)
 		for( int k = 0; k < n; k++ )
-			#pragma vector aligned
 				for (int i = 0; i < n; ++i)
 					C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
 
