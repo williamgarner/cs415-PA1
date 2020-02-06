@@ -1,7 +1,7 @@
 # On Bridges we will check versus your performance versus Intel MKL library's BLAS.
 
 CC = icc
-OPT = -Ofast
+OPT = -Ofast -qopt-report=5
 CFLAGS = -Wall -Werror -funroll-all-loops -global-hoist -march=haswell -qopt-prefetch=5 -unroll-aggressive -xhaswell -no-multibyte-chars -std=gnu99 $(OPT)
 #MKLROOT = /opt/intel/composer_xe_2013.1.117/mkl
 #LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm
