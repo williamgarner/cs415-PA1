@@ -46,80 +46,73 @@ LOOP BEGIN at dgemm-naive.c(24,2)
       remark #25440: unrolled and jammed by 4   (pre-vector) 
       remark #15542: loop was not vectorized: inner loop was already vectorized
       remark #25018: Total number of lines prefetched=4
-      remark #25035: Number of pointer data prefetches=4, dist=10
+      remark #25035: Number of pointer data prefetches=4, dist=11
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
-      <Peeled loop for vectorization>
-         remark #25015: Estimate of max trip count of loop=1000
-      LOOP END
-
-      LOOP BEGIN at dgemm-naive.c(26,4)
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15381: vectorization support: unaligned access used inside loop body
+      LOOP BEGIN at dgemm-naive.c(27,4)
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
          remark #15305: vectorization support: vector length 4
-         remark #15309: vectorization support: normalized vectorization overhead 0.580
+         remark #15309: vectorization support: normalized vectorization overhead 0.143
          remark #15300: LOOP WAS VECTORIZED
-         remark #15442: entire loop may be executed in remainder
-         remark #15450: unmasked unaligned unit stride loads: 8 
-         remark #15451: unmasked unaligned unit stride stores: 16 
+         remark #15448: unmasked aligned unit stride loads: 32 
+         remark #15449: unmasked aligned unit stride stores: 16 
          remark #15475: --- begin vector cost summary ---
          remark #15476: scalar cost: 152 
-         remark #15477: vector cost: 35.750 
-         remark #15478: estimated potential speedup: 4.040 
+         remark #15477: vector cost: 28.000 
+         remark #15478: estimated potential speedup: 5.410 
          remark #15488: --- end vector cost summary ---
          remark #25018: Total number of lines prefetched=8
          remark #25035: Number of pointer data prefetches=8, dist=8
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
+      LOOP BEGIN at dgemm-naive.c(27,4)
       <Remainder loop for vectorization>
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
@@ -128,44 +121,36 @@ LOOP BEGIN at dgemm-naive.c(24,2)
    LOOP BEGIN at dgemm-naive.c(25,3)
    <Remainder>
       remark #15542: loop was not vectorized: inner loop was already vectorized
-      remark #25015: Estimate of max trip count of loop=1000
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
-      <Peeled loop for vectorization>
-         remark #25015: Estimate of max trip count of loop=1000
-      LOOP END
-
-      LOOP BEGIN at dgemm-naive.c(26,4)
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15381: vectorization support: unaligned access used inside loop body
+      LOOP BEGIN at dgemm-naive.c(27,4)
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
          remark #15305: vectorization support: vector length 4
-         remark #15309: vectorization support: normalized vectorization overhead 0.950
+         remark #15309: vectorization support: normalized vectorization overhead 0.143
          remark #15300: LOOP WAS VECTORIZED
-         remark #15442: entire loop may be executed in remainder
-         remark #15450: unmasked unaligned unit stride loads: 5 
-         remark #15451: unmasked unaligned unit stride stores: 4 
+         remark #15448: unmasked aligned unit stride loads: 8 
+         remark #15449: unmasked aligned unit stride stores: 4 
          remark #15475: --- begin vector cost summary ---
          remark #15476: scalar cost: 38 
-         remark #15477: vector cost: 10.000 
-         remark #15478: estimated potential speedup: 3.610 
+         remark #15477: vector cost: 7.000 
+         remark #15478: estimated potential speedup: 5.410 
          remark #15488: --- end vector cost summary ---
          remark #25018: Total number of lines prefetched=5
          remark #25035: Number of pointer data prefetches=5, dist=8
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
+      LOOP BEGIN at dgemm-naive.c(27,4)
       <Remainder loop for vectorization>
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
@@ -179,35 +164,28 @@ LOOP BEGIN at dgemm-naive.c(24,2)
    LOOP BEGIN at dgemm-naive.c(25,3)
       remark #15542: loop was not vectorized: inner loop was already vectorized
       remark #25018: Total number of lines prefetched=1
-      remark #25035: Number of pointer data prefetches=1, dist=27
+      remark #25035: Number of pointer data prefetches=1, dist=40
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
-      <Peeled loop for vectorization>
-         remark #25015: Estimate of max trip count of loop=1000
-      LOOP END
-
-      LOOP BEGIN at dgemm-naive.c(26,4)
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference C[i+j*n] has unaligned access   [ dgemm-naive.c(27,5) ]
-         remark #15389: vectorization support: reference A[i+k*n] has unaligned access   [ dgemm-naive.c(27,18) ]
-         remark #15381: vectorization support: unaligned access used inside loop body
+      LOOP BEGIN at dgemm-naive.c(27,4)
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference C[i+j*n] has aligned access   [ dgemm-naive.c(28,5) ]
+         remark #15388: vectorization support: reference A[i+k*n] has aligned access   [ dgemm-naive.c(28,18) ]
          remark #15305: vectorization support: vector length 4
-         remark #15309: vectorization support: normalized vectorization overhead 1.750
+         remark #15309: vectorization support: normalized vectorization overhead 0.143
          remark #15300: LOOP WAS VECTORIZED
-         remark #15442: entire loop may be executed in remainder
-         remark #15450: unmasked unaligned unit stride loads: 2 
-         remark #15451: unmasked unaligned unit stride stores: 1 
+         remark #15448: unmasked aligned unit stride loads: 2 
+         remark #15449: unmasked aligned unit stride stores: 1 
          remark #15475: --- begin vector cost summary ---
          remark #15476: scalar cost: 10 
-         remark #15477: vector cost: 2.000 
-         remark #15478: estimated potential speedup: 4.640 
+         remark #15477: vector cost: 1.750 
+         remark #15478: estimated potential speedup: 5.700 
          remark #15488: --- end vector cost summary ---
          remark #25018: Total number of lines prefetched=2
          remark #25035: Number of pointer data prefetches=2, dist=8
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
 
-      LOOP BEGIN at dgemm-naive.c(26,4)
+      LOOP BEGIN at dgemm-naive.c(27,4)
       <Remainder loop for vectorization>
          remark #25015: Estimate of max trip count of loop=1000
       LOOP END
@@ -225,19 +203,19 @@ dgemm-naive.c(23,1):remark #34051: REGISTER ALLOCATION : [square_dgemm] dgemm-na
         Assigned     :   30[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm15]
         
     Routine temporaries
-        Total         :     380
-            Global    :     138
-            Local     :     242
-        Regenerable   :       3
-        Spilled       :      81
+        Total         :     292
+            Global    :     127
+            Local     :     165
+        Regenerable   :       4
+        Spilled       :      77
         
     Routine stack
         Variables     :       0 bytes*
             Reads     :       0 [0.00e+00 ~ 0.0%]
             Writes    :       0 [0.00e+00 ~ 0.0%]
-        Spills        :     952 bytes*
-            Reads     :     143 [3.62e+03 ~ 8.7%]
-            Writes    :      91 [1.77e+03 ~ 4.3%]
+        Spills        :     928 bytes*
+            Reads     :     120 [2.98e+03 ~ 9.9%]
+            Writes    :      87 [1.72e+03 ~ 5.7%]
     
     Notes
     
