@@ -13,6 +13,12 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 */
 
+#include <string.h>
+
+#define C(row,col) C[row*n + col]
+#define A(row, col) A[row*n + col]
+#define B(row, bCol) B[row*n + bCol]
+
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
 /* This routine performs a dgemm operation
@@ -21,6 +27,19 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (int n, double* A, double* B, double* C)
 {
+	memset(C, 0, sizeof(C));
+	for(int row = 0; row < n; ++row)
+	{
+		for(int col = 0; col < n; ++col)
+		{
+			for(int bCol = 0; bCol < n; ++bCol)
+			{
+				C(row, col) += A(row, col) *
+			}
+		}
+	}
+
+
   /* For each row i of A */
   for (int i = 0; i < n; ++i)
     /* For each column j of B */
