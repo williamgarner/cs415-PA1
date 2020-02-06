@@ -28,16 +28,16 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (int n, double* A, double* B, double* C)
 {
-//	for(int row = 0; row < n; ++row)
-//	{
-//		for(int col = 0; col < n; ++col)
-//		{
-//			for(int bCol = 0; bCol < n; ++bCol)
-//			{
-//				C(row, col) += A(row, col) * B(row, bCol);
-//			}
-//		}
-//	}
+	for(int i = 0; i < n; ++i)
+	{
+		for(int j = 0; j < n; ++j)
+		{
+			for(int k = 0; k < n; ++k)
+			{
+				C[i * n + j] += A[i * n + k] * B[i*n + j];
+			}
+		}
+	}
 
 
 //	for (int i = 0; i < n; i++)
@@ -50,14 +50,14 @@ void square_dgemm (int n, double* A, double* B, double* C)
 
 
   /* For each row i of A */
-  for (int i = 0; i < n; ++i)
-    /* For each column j of B */
-    for (int j = 0; j < n; ++j)
-    {
-      /* Compute C(i,j) */
-      double cij = C[i+j*n];
-      for( int k = 0; k < n; k++ )
-      	cij += A[i+k*n] * B[k+j*n];
-      C[i+j*n] = cij;
-    }
+//  for (int i = 0; i < n; ++i)
+//    /* For each column j of B */
+//    for (int j = 0; j < n; ++j)
+//    {
+//      /* Compute C(i,j) */
+//      double cij = C[i+j*n];
+//      for( int k = 0; k < n; k++ )
+//      	cij += A[i+k*n] * B[k+j*n];
+//      C[i+j*n] = cij;
+//    }
 }
