@@ -13,8 +13,6 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 */
 
-#include <math.h>
-
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
 /* This routine performs a dgemm operation
@@ -29,6 +27,6 @@ void square_dgemm (int n, double* A, double* B, double* __restrict__ C)
 		for( int k = 0; k < n; k++ )
 			#pragma vector aligned
 			for (int i = 0; i < n; ++i)
-				C[i+ j*n] = fma(A[i+ k*n], B[k+ j*n], C[i+ j*n]);
+				C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
 
 }
