@@ -13,13 +13,9 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 */
 #if !defined(__FMA__) && defined(__AVX2__)
-#define __FMA__ 1
+	#define __FMA__ 1
 #endif
 
-#define FP_FAST_FMA 1
-
-#include <math.h>
-#include <stdio.h>
 
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
