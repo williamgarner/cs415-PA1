@@ -20,12 +20,9 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (int n, double*  A, double* B, double* C)
 {
-#pragma loop_count min(31), max(769), avg(345)
 #pragma block_loop factor(256) level(1)
 	for (int j = 0; j < n; ++j)
-		#pragma loop_count min(31), max(769), avg(345)
 		for( int k = 0; k < n; k++ )
-				#pragma loop_count min(31), max(769), avg(345)
 				for (int i = 0; i < n; ++i)
 					C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
 
