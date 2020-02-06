@@ -13,15 +13,13 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 
 */
 
-#define double* __restrict__ __attribute__((align_value (32)));
-
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
 /* This routine performs a dgemm operation
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
  * On exit, A and B maintain their input values. */    
-void square_dgemm (int n, double* A, double* B, double* C)
+void square_dgemm (int n, double* __restrict__ __attribute__((align_value (32))) A, double* __restrict__ __attribute__((align_value (32)))B, double* __restrict__ __attribute__((align_value (32)))C)
 {
 #pragma block_loop factor(256) level(1:2)
 	for (int j = 0; j < n; ++j)
