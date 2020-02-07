@@ -27,6 +27,7 @@ void square_dgemm (int n, double*  A, double* B, double* C)
 		#pragma block_loop factor(1024) level(1)
 		for (int j = 0; j < n; ++j)
 			for( int k = 0; k < n; k++ )
+				#pragma vector unaligned
 				for (int i = 0; i < n; ++i)
 					C[i+ j*n] += A[i+ k*n] * B[k+ j*n];
 	}
