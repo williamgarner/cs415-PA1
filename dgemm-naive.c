@@ -43,7 +43,7 @@ void square_dgemm (const int n, double*restrict  A, double*restrict B, double* r
 
 
 //			#pragma loop_count min(31), max(769), avg(345)
-			#pragma block_loop factor(256)  level(1)
+			#pragma block_loop factor(1024)  level(1)
 				for (int j = 0; j < n; ++j)
 					for (int i = 0; i < n; ++i)
 						#pragma vector unaligned
