@@ -18,7 +18,7 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
  * On exit, A and B maintain their input values. */    
-void square_dgemm (int n, double*  A, double* B, double* C)
+void square_dgemm (int n, double*  A__attribute__((aligned(32))), double* B__attribute__((aligned(32))), double* C__attribute__((aligned(32))))
 {
 	double T[n*n] __attribute__((aligned(32)));
 	for(int i = 0; i < n; ++i)
