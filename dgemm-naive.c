@@ -18,7 +18,7 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
  * On exit, A and B maintain their input values. */    
-void square_dgemm (const int n, double*restrict  A, double*restrict B, double* restrict C)
+void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
 
 //	if(n < 191)
@@ -35,7 +35,7 @@ void square_dgemm (const int n, double*restrict  A, double*restrict B, double* r
 //	{
 			double T[n*n];
 //			#pragma loop_count min(31), max(769), avg(345)
-//			#pragma block_loop factor(1024)
+			#pragma block_loop
 				for(int i = 0; i < n; ++i)
 					#pragma vector unaligned
 					for(int j = 0; j < n; ++j)
@@ -44,7 +44,7 @@ void square_dgemm (const int n, double*restrict  A, double*restrict B, double* r
 
 //			#pragma loop_count min(31), max(769), avg(345)
 //			#pragma block_loop factor(256)  level(2)
-				#pragma block_loop level(1:2)
+//				#pragma block_loop level(1:2)
 				for (int j = 0; j < n; ++j)
 					for (int i = 0; i < n; ++i)
 						#pragma vector unaligned
