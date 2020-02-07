@@ -33,13 +33,13 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 //	}
 //	else
 //	{
-			double T[n*n];
+//			double T[n*n];
 //			#pragma loop_count min(31), max(769), avg(345)
-			#pragma block_loop level(2) factor(300)
-				for(int i = 0; i < n; ++i)
-					#pragma vector unaligned
-					for(int j = 0; j < n; ++j)
-							T[i*n + j] = A[j*n + i];
+//			#pragma block_loop level(2) factor(300)
+//				for(int i = 0; i < n; ++i)
+//					#pragma vector unaligned
+//					for(int j = 0; j < n; ++j)
+//							T[i*n + j] = A[j*n + i];
 
 
 //			#pragma loop_count min(31), max(769), avg(345)
