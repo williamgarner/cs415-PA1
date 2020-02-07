@@ -32,7 +32,7 @@ void square_dgemm (int n, double*  A, double* B, double* C)
 //	}
 //	else
 //	{
-			double T[n*n] __attribute__((aligned(32)));
+			double T[n*n];
 			#pragma loop_count min(31), max(769), avg(345)
 			#pragma block_loop factor(1024) level(1)
 				for(int i = 0; i < n; ++i)
