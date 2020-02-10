@@ -33,9 +33,9 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 
 					int temp;
 					scanf("%d", &temp);
-					for(int i = ii; i < ii + min(BLOCK_SIZE, n -1); ++i)
+					for(int i = ii; i < ii + min(BLOCK_SIZE, n); ++i)
 					{
-						for(int j = jj; j < jj+ min(BLOCK_SIZE, n-1); ++j)
+						for(int j = jj; j < jj+ min(BLOCK_SIZE, n); ++j)
 						{
 							printf("%d, %d\n", i, j);
 
