@@ -64,13 +64,10 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 
 
 
+	for (int j = 0; j < n; ++j)
 		for (int i = 0; i < n; ++i)
+			#pragma vector unaligned
 			for( int k = 0; k < n; ++k)
-#pragma vector unaligned
-			for (int j = 0; j < n; ++j)
-
-
-
 					C[i+ j*n] += T[k+ i*n] * B[k+ j*n];
 
 }
