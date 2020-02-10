@@ -25,6 +25,8 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
+
+	printf("SIZE: %d\n", n);
 			double T[n*n];
 			for(int blockStart = 0; blockStart < n; blockStart += BLOCK_SIZE)
 			{
