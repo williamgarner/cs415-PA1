@@ -37,7 +37,7 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 						{
 							int temp;
 							printf("%d, %d\n", i, j);
-							scanf("%d", &temp)
+							scanf("%d", &temp);
 							T[i*n + j] = A[j*n + i];
 						}
 					}
