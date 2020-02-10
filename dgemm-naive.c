@@ -45,9 +45,23 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 //					}
 //				}
 //			}
-//
-//
-//
+
+		double AA[n*n], BB[n*n]
+		for(int i = 0; i < n*n; ++i)
+		{
+			AA[i] = A[i];
+			BB[i] = B[i];
+		}
+
+
+	for (int j = 0; j < n; ++j)
+		for (int i = 0; i < n; ++i)
+			#pragma vector unaligned
+			for( int k = 0; k < n; k++ )
+				C[i+j*n] += AA[i+k*n] * BB[k+j*n];
+
+
+
 //				for (int j = 0; j < n; ++j)
 //					for (int i = 0; i < n; ++i)
 //						#pragma vector unaligned
@@ -55,18 +69,19 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 //								C[i+ j*n] += T[k+ i*n] * B[k+ j*n];
 
 
-	double T[n*n];
-		for(int i = 0; i < n; ++i)
-			for(int j = 0; j < n; ++j)
-				T[i*n + j] = A[j*n + i];
-
-
-
-
-	for (int j = 0; j < n; ++j)
-		for (int i = 0; i < n; ++i)
-			#pragma vector unaligned
-			for( int k = 0; k < n; ++k)
-					C[i+ j*n] += T[k+ i*n] * B[k+ j*n];
+//	double T[n*n];
+//		for(int i = 0; i < n; ++i)
+//			#pragma vector unaligned
+//			for(int j = 0; j < n; ++j)
+//				T[i*n + j] = A[j*n + i];
+//
+//
+//
+//
+//	for (int j = 0; j < n; ++j)
+//		for (int i = 0; i < n; ++i)
+//			#pragma vector unaligned
+//			for( int k = 0; k < n; ++k)
+//					C[i+ j*n] += T[k+ i*n] * B[k+ j*n];
 
 }
