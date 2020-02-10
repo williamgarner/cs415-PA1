@@ -21,17 +21,20 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
  * On exit, A and B maintain their input values. */    
-void square_dgemm (const int n, double*restrict  A, double*restrict B, double* restrict C)
+void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
 			double T[n*n];
 			for(int iblockStart = 0; iblockStart < n; iblockStart += BLOCK_SIZE)
 			{
 				int iblockEnd = min(iblockStart + BLOCK_SIZE, n);
+#pragma idev
 				for(int jblockStart = 0; jblockStart < n; jblockStart += BLOCK_SIZE)
 				{
 					int jblockEnd = min(jblockStart + BLOCK_SIZE, n);
+#pragma idev
 					for(int i = iblockStart; i < iblockEnd; ++i)
 						#pragma vector aligned
+#pragma idev
 						for(int j = jblockStart; j < jblockEnd; ++j)
 							T[i*n + j] = A[j*n + i];
 				}
