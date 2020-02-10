@@ -14,6 +14,9 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 */
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
+#define min(a,b) (((a)<(b))?(a):(b))
+#define BLOCK_SIZE 50
+
 /* This routine performs a dgemm operation
  *  C := C + A * B
  * where A, B, and C are lda-by-lda matrices stored in column-major format.
@@ -21,9 +24,21 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
 void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
 			double T[n*n];
-				for(int i = 0; i < n; ++i)
-					for(int j = 0; j < n; ++j)
+			for(int ii = 0; ii < n; ii += BLOCK_SIZE)
+			{
+				for(int jj = 0; jj < n; jj += BLOCK_SIZE)
+				{
+
+					for(int i = ii; i < ii + min(BLOCK_SIZE, n -1); ++i)
+					{
+						for(int j = jj; j < jj+ min(BLOCK_SIZE, n-1); ++j)
+						{
 							T[i*n + j] = A[j*n + i];
+						}
+					}
+				}
+			}
+
 
 
 				for (int j = 0; j < n; ++j)
