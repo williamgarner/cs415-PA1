@@ -31,14 +31,13 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 
 //					int temp;
 //					scanf("%d", &temp);
-					for(int i = blockStart; i < blockStart + min(BLOCK_SIZE, n); ++i)
+				for(int i = blockStart; i < blockStart + min(BLOCK_SIZE, n); ++i)
+				{
+					for(int j = blockStart; j < blockStart + min(BLOCK_SIZE, n); ++j)
 					{
-						for(int j = blockStart; j < blockStart + min(BLOCK_SIZE, n); ++j)
-						{
 //							printf("%d, %d\n", i, j);
 
-							T[i*n + j] = A[j*n + i];
-						}
+						T[i*n + j] = A[j*n + i];
 					}
 				}
 			}
