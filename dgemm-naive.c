@@ -35,7 +35,9 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 					{
 						for(int j = jj; j < jj+ min(BLOCK_SIZE, n-1); ++j)
 						{
+							int temp;
 							printf("%d, %d\n", i, j);
+							scanf("%d", &temp)
 							T[i*n + j] = A[j*n + i];
 						}
 					}
