@@ -31,9 +31,8 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 				{
 					int jblockEnd = min(jblockStart + BLOCK_SIZE, n);
 					for(int i = iblockStart; i < iblockEnd; ++i)
-
+						#pragma vector aligned
 						for(int j = jblockStart; j < jblockEnd; ++j)
-#pragma vector unaligned
 							T[i*n + j] = A[j*n + i];
 				}
 			}
@@ -42,9 +41,8 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 
 				for (int j = 0; j < n; ++j)
 					for (int i = 0; i < n; ++i)
+						#pragma vector aligned
 						for( int k = 0; k < n; ++k)
-
-#pragma vector unaligned
 								C[i+ j*n] += T[k+ i*n] * B[k+ j*n];
 
 
