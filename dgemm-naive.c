@@ -30,7 +30,7 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 			double T[n*n];
 			for(int blockStart = 0; blockStart < n; blockStart += BLOCK_SIZE)
 			{
-				int blockEnd = blockStart + min(BLOCK_SIZE, n);
+				int blockEnd = min(blockStart + BLOCK_SIZE, n);
 
 
 					int temp;
