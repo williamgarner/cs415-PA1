@@ -26,16 +26,14 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
 void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
 			double T[n*n];
-			for(int ii = 0; ii < n; ii += BLOCK_SIZE)
+			for(int blockStart = 0; blockStart < n; blockStart += BLOCK_SIZE)
 			{
-				for(int jj = 0; jj < n; jj += BLOCK_SIZE)
-				{
 
 					int temp;
 					scanf("%d", &temp);
-					for(int i = ii; i < ii + min(BLOCK_SIZE, n); ++i)
+					for(int i = blockStart; i < blockStart + min(BLOCK_SIZE, n); ++i)
 					{
-						for(int j = jj; j < jj+ min(BLOCK_SIZE, n); ++j)
+						for(int j = blockStart; j < blockStart + min(BLOCK_SIZE, n); ++j)
 						{
 							printf("%d, %d\n", i, j);
 
