@@ -27,14 +27,14 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 			for(int iblockStart = 0; iblockStart < n; iblockStart += BLOCK_SIZE)
 			{
 				int iblockEnd = min(iblockStart + BLOCK_SIZE, n);
-#pragma idev
+#pragma ivdep
 				for(int jblockStart = 0; jblockStart < n; jblockStart += BLOCK_SIZE)
 				{
 					int jblockEnd = min(jblockStart + BLOCK_SIZE, n);
-#pragma idev
+#pragma ivdep
 					for(int i = iblockStart; i < iblockEnd; ++i)
 						#pragma vector aligned
-#pragma idev
+#pragma ivdep
 						for(int j = jblockStart; j < jblockEnd; ++j)
 							T[i*n + j] = A[j*n + i];
 				}
