@@ -14,8 +14,6 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 */
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
-//#include <stdio.h>
-
 #define min(a,b) (((a)<(b))?(a):(b))
 #define BLOCK_SIZE 50
 
@@ -25,8 +23,6 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
  * On exit, A and B maintain their input values. */    
 void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
-
-//	printf("THIS IS THE SIZE: %d\n", n);
 			double T[n*n];
 			for(int iblockStart = 0; iblockStart < n; iblockStart += BLOCK_SIZE)
 			{
@@ -36,10 +32,9 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 					int jblockEnd = min(jblockStart + BLOCK_SIZE, n);
 					for(int i = iblockStart; i < iblockEnd; ++i)
 					{
+						#pragma vector unaligned
 						for(int j = jblockStart; j < jblockEnd; ++j)
 						{
-//							printf("%d, %d\n", i, j);
-
 							T[i*n + j] = A[j*n + i];
 						}
 					}
