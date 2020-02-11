@@ -33,9 +33,9 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 				{
 //					int jblockEnd =
 					#pragma ivdep
-					for(int i = iblockStart; i < min(iblockStart + BLOCK_SIZE, n);; ++i)
+					for(int i = iblockStart; i < min(iblockStart + BLOCK_SIZE, n); ++i)
 						#pragma ivdep
-						for(int j = jblockStart; j < min(jblockStart + BLOCK_SIZE, n);; ++j)
+						for(int j = jblockStart; j < min(jblockStart + BLOCK_SIZE, n); ++j)
 							T[i*n + j] = A[j*n + i];
 				}
 			}
