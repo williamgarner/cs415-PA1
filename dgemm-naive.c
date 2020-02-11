@@ -24,6 +24,7 @@ const char* dgemm_desc = "Naive, three-loop dgemm.";
 void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 {
 			double T[n*n];
+			#pragma ivdep
 			for(int iblockStart = 0; iblockStart < n; iblockStart += BLOCK_SIZE)
 			{
 				int iblockEnd = min(iblockStart + BLOCK_SIZE, n);
