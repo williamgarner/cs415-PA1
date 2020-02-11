@@ -15,7 +15,7 @@ LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKL
 const char* dgemm_desc = "Naive, three-loop dgemm.";
 
 #define min(a,b) (((a)<(b))?(a):(b))
-#define BLOCK_SIZE 50
+#define BLOCK_SIZE 60
 
 /* This routine performs a dgemm operation
  *  C := C + A * B
