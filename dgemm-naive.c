@@ -34,7 +34,6 @@ void square_dgemm (const int n, double*  A, double* B, double* restrict C)
 					int jblockEnd = min(jblockStart + BLOCK_SIZE, n);
 					#pragma ivdep
 					for(int i = iblockStart; i < iblockEnd; ++i)
-						#pragma vector unaligned
 						#pragma ivdep
 						for(int j = jblockStart; j < jblockEnd; ++j)
 							T[i*n + j] = A[j*n + i];
