@@ -7,8 +7,8 @@ CFLAGS = -Wall -Werror -align -restrict -ipo -fma -funroll-loops -march=haswell 
 #LDLIBS = -lrt -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm
 LDLIBS = -lrt  -I$(MKLROOT)/include -Wl,-L$(MKLROOT)/lib/intel64/ -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -ldl
 
-targets = benchmark-naive
-objects = benchmark.o dgemm-naive.o
+targets = benchmark-blocked
+objects = benchmark.o dgemm-blocked.o
 
 .PHONY : default
 default : all
