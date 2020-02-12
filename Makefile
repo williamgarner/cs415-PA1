@@ -16,10 +16,10 @@ default : all
 .PHONY : all
 all : clean $(targets)
 
-benchmark-naive : benchmark.o dgemm-naive.o
-	$(CC) -o $@ $^ $(LDLIBS)
-#benchmark-blocked : benchmark.o dgemm-blocked.o
+#benchmark-naive : benchmark.o dgemm-naive.o
 #	$(CC) -o $@ $^ $(LDLIBS)
+benchmark-blocked : benchmark.o dgemm-blocked.o
+	$(CC) -o $@ $^ $(LDLIBS)
 #benchmark-blas : benchmark.o dgemm-blas.o
 #	$(CC) -o $@ $^ $(LDLIBS)
 
